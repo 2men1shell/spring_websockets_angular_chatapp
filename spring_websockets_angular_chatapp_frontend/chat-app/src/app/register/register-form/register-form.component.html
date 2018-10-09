@@ -1,22 +1,24 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <label>
-                Name:
-                <input type="text" formControlName="name">
-            </label>
-            <label>
-                email:
-                <input type="text" formControlName="email">
-            </label>
-            <label>
-                Password:
-                <input type="password" formControlName="password">
-            </label>
-            <label>
-                Confirm password:
-                <input type="password" formControlName="confirmPassword">
-            </label>
+            <label> Name: </label>
+            <input type="text" formControlName="name">
+
+            <label> email: </label>
+            <input type="text" formControlName="email">
+
+            <form [formGroup]="registerForm.get('passwords')">
+                <label> Password: </label>
+                <input id="password" type="password" formControlName="password">
+
+                <label> Confirm password: </label>
+                <input id="confirmPassword" type="password" formControlName="confirmPassword">
+
+                <div class="alert alert-danger"
+                     *ngIf="passwords.controls.confirmPassword.errors?.matchPassword">
+                    Passwords don't match
+                </div>
+            </form>
             <button type="submit" [disabled]="!registerForm.valid">Submit</button>
 
         </form>
