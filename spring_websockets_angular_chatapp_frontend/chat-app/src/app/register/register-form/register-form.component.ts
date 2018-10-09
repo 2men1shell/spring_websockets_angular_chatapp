@@ -21,7 +21,7 @@ export class RegisterFormComponent implements OnInit {
             password: ['', Validators.required],
             confirmPassword: ['', Validators.required]
         }, {
-            validator: PasswordValidation.matchPassword
+            validator: PasswordValidation.matchPassword // your validation method
         })
     });
 

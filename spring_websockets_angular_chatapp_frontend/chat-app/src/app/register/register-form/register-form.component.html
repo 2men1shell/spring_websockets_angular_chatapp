@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
             <label> Name: </label>
             <input type="text" formControlName="name">
 
@@ -8,19 +9,28 @@
             <input type="text" formControlName="email">
 
             <form [formGroup]="registerForm.get('passwords')">
-                <label> Password: </label>
-                <input id="password" type="password" formControlName="password">
-
-                <label> Confirm password: </label>
-                <input id="confirmPassword" type="password" formControlName="confirmPassword">
-
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                            type="password"
+                            id="password"
+                            class="form-control"
+                            formControlName="password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Conform Password</label>
+                    <input
+                            type="password"
+                            class="form-control"
+                            id="confirmPassword"
+                            formControlName="confirmPassword">
+                </div>
                 <div class="alert alert-danger"
-                     *ngIf="passwords.controls.confirmPassword.errors?.matchPassword">
+                     *ngIf="registerForm.get('passwords').errors?.matchPassword && (registerForm.touched || registerForm.dirty)">
                     Passwords don't match
                 </div>
             </form>
-            <button type="submit" [disabled]="!registerForm.valid">Submit</button>
-
+            <button class="btn btn-success" type="submit" [disabled]="!registerForm.valid">Submit</button>
         </form>
     </div>
 </div>
