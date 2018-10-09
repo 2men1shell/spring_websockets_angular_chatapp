@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <label>
+                Name:
+                <input type="text" formControlName="name">
+            </label>
+            <label>
+                email:
+                <input type="text" formControlName="email">
+            </label>
+            <label>
+                Password:
+                <input type="password" formControlName="password">
+            </label>
+            <label>
+                Confirm password:
+                <input type="password" formControlName="confirmPassword">
+            </label>
+            <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+
+        </form>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" (click)="goBack()">Back</button>
